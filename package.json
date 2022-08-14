@@ -1,0 +1,15 @@
+{
+  "name": "mycon-notifier",
+  "version": "1.0.0",
+  "description": "Notifica quando houver uma oferta de cotas contempladas desejada no mycon.",
+  "main": "index.js",
+  "author": "alvsconcelos",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "node-notifier": "^10.0.1",
+    "sequelize": "^6.21.3",
+    "sqlite3": "^5.0.11"
+  },
+  "repository": "https://github.com/alvsconcelos/mycon-notifier"
+}
