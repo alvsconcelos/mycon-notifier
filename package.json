@@ -4,10 +4,15 @@
   "description": "Notifica quando houver uma oferta de cotas contempladas desejada no mycon.",
   "main": "index.js",
   "author": "alvsconcelos",
+  "scripts": {
+    "search": "node ./index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "node-notifier": "^10.0.1",
+    "open": "^8.4.0",
     "sequelize": "^6.21.3",
     "sqlite3": "^5.0.11"
   },
