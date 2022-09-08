@@ -125,6 +125,11 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
+atomically@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/atomically/-/atomically-1.7.0.tgz#c07a0458432ea6dbc9a3506fffa424b48bccaafe"
+  integrity sha512-Xcz9l0z7y9yQ9rdDaxlmaI4uJHf/T8g9hOEzJcsEqX2SjCj4J20uK7+ldkDHMbpJDK76wF7xEIgxc/vSlsfw5w==
+
 axios@^0.27.2:
   version "0.27.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
@@ -622,6 +627,13 @@ node-gyp@8.x:
     semver "^7.3.5"
     tar "^6.1.2"
     which "^2.0.2"
+
+node-json-db@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/node-json-db/-/node-json-db-2.1.1.tgz#c1f5d7d509a3b977709b2af6890b1368008531ac"
+  integrity sha512-6JnBSWc0+HMtUI3+SfwLsoDflF6XXjjLoAjUn4RyMTwqhRvCHEwN5O0TGkei4zFFhWzmlOo4Amp4P4U7d6FIjQ==
+  dependencies:
+    atomically "^1.7.0"
 
 node-notifier@^10.0.1:
   version "10.0.1"

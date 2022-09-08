@@ -16,6 +16,7 @@ axios(config)
             const quota = new Quota(response.data[quotaIndex])
 
             if (quota.profitPercentage <= DESIRED_PROFIT_PERCENTAGE) {
+                quota.isValid()
                 notifier.notify({
                     title: 'Cota desejada encontrada!',
                     message: quota.messageStats,
@@ -25,6 +26,7 @@ axios(config)
 
                 notifier.on('click', function (notifierObject, options, event) {
                     open('https://mycotas.mycon.com.br/')
+                    quota.registerView()
                 })
             }
         }
