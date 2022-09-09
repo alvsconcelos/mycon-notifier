@@ -41,13 +41,12 @@ class Quota {
     registerOnDb() {
         return new Promise((resolve, reject) => {
             db.getData(this.dbKey).then((quotaData) => {
-                // Found on the database. If its valid
+                // Found on the database. If the timestamp is valid, will show to the user
                 if (timestampValid(quotaData.timestamp)) {
                     resolve(true)
-                    console.log('Exibir 1')
                 }
             })
-                // Not found on the database
+                // Not found on the database, will register on the database and show to the user
                 .catch((error) => {
                     db.push(this.dbKey, {
                         creditValue: this.creditValue,
@@ -58,8 +57,6 @@ class Quota {
                         timestamp: null,
                         ...this.data
                     })
-
-                    console.log('Exibir 2')
                     resolve(true)
                 })
         })
