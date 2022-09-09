@@ -1,8 +1,11 @@
+const { JsonDB, Config }  = require('node-json-db')
+const DB_SEPARATOR = '//'
 
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './database.sqlite'
-})
+const db = new JsonDB(new Config("database", true, true, DB_SEPARATOR))
+const generateDbKey = (key) => {
+    return `${DB_SEPARATOR}${key}`
+}
 
-module.exports = sequelize
+module.exports = {
+    db, generateDbKey, DB_SEPARATOR
+}

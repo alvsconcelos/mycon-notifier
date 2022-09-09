@@ -1,5 +1,5 @@
-const database = require('./db')
-const QuotaModel = require('./db_models/quota')
+const { db, generateDbKey } = require('./db')
+const { timestampValid } = require('./util')
 
 const moneyFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -17,6 +17,7 @@ class Quota {
 
         this.sellingValue = valorVenda - valorPago
         this.profit = (this.sellingValue * 100) / valorCredito
+        this.dbKey = generateDbKey(this.data.propostaID)
     }
 
     get profitPercentage() {
@@ -27,25 +28,41 @@ class Quota {
         return `Lucro real: ${Math.round(this.profitPercentage)}%\nValor crédito: ${moneyFormat.format(this.creditValue)}\nValor venda: ${moneyFormat.format(this.sellingPrice)}`
     }
 
-    isValid() {
-        const hasOnDb = QuotaModel.findByPk(this.data.propostaID).then(res => {
-            console.log(res)
+    registerView() {
+        return new Promise((resolve, reject) => {
+            db.push(this.dbKey, {
+                timestamp: Date.now(),
+            }, false).then((value) => {
+                resolve(true)
+            })
         })
     }
 
-    async registerView() {
-        try {
-            const result = await database.sync()
-            console.log(result)
-     
-            const create = await QuotaModel.create({
-                id: this.data.propostaID
+    registerOnDb() {
+        return new Promise((resolve, reject) => {
+            db.getData(this.dbKey).then((quotaData) => {
+                // Found on the database. If its valid
+                if (timestampValid(quotaData.timestamp)) {
+                    resolve(true)
+                    console.log('Exibir 1')
+                }
             })
+                // Not found on the database
+                .catch((error) => {
+                    db.push(this.dbKey, {
+                        creditValue: this.creditValue,
+                        paidValue: this.paidValue,
+                        sellingPrice: this.sellingPrice,
+                        sellingValue: this.sellingValue,
+                        profit: this.profit,
+                        timestamp: null,
+                        ...this.data
+                    })
 
-            console.log(create)
-        } catch (error) {
-            console.log(error)
-        }
+                    console.log('Exibir 2')
+                    resolve(true)
+                })
+        })
     }
 }
 

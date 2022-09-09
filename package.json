@@ -13,9 +13,7 @@
     "dotenv": "^16.0.1",
     "node-json-db": "^2.1.1",
     "node-notifier": "^10.0.1",
-    "open": "^8.4.0",
-    "sequelize": "^6.21.3",
-    "sqlite3": "^5.0.11"
+    "open": "^8.4.0"
   },
   "repository": "https://github.com/alvsconcelos/mycon-notifier"
 }
